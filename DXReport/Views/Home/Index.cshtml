@@ -1,0 +1,10 @@
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+@Html.DevExpress().WebDocumentViewer(settings =>
+{
+    settings.Name = "WebDocumentViewer";
+
+}).Bind(new DevExpress.XtraReports.Web.CachedReportSourceWeb(new DXReport.Reports.XtraReport1())).GetHtml()
