@@ -117,22 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="sqlDataSource3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 95</value>
+  <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
-  <data name="sqlDataSource3.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTMiPjxWaWV3IE5hbWU9IkN1c3RvbWVyc18xIj48RmllbGQgTmFtZT0iQ2l0eSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJTdW1fUHJpY2UiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IkNhdGVnb3J5IiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjwvRGF0YVNldD4=</value>
+  <data name="customSqlQuery1.Sql" xml:space="preserve">
+    <value>select Category, city,
+       sum(ShipQty),
+       sum(ShipQty) * 100.0 / sum(sum(shipqty)) over (partition by city)
+from InvoiceLineitemes ili join
+     Inventory i
+     on ili.ItemNumber = i.ItemNumber join
+     Invoice inv
+     on ili.InvoiceNumber = inv.InvoiceNumber join
+     Customers c
+     on inv.SoldToCustomer = c.CustomerNumber 
+group by Category, City;</value>
+  </data>
+  <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IlF1ZXJ5Ij48RmllbGQgTmFtZT0iQ2F0ZWdvcnkiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iY2l0eSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJDb2x1bW4zIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iXzEiIFR5cGU9IkRlY2ltYWwiIC8+PC9WaWV3PjwvRGF0YVNldD4=</value>
   </data>
   <metadata name="sqlDataSource2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 56</value>
   </metadata>
-  <data name="sqlDataSource2.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTIiPjxWaWV3IE5hbWU9Ikludm9pY2VfMSI+PEZpZWxkIE5hbWU9IlN1bV9TaGlwUXR5IiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iQ2l0eSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJDYXRlZ29yeSIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
+  <data name="customSqlQuery2.Sql" xml:space="preserve">
+    <value>select Category, city,
+       
+       sum(ShipQty) * 100.0 / sum(sum(shipqty)) over (partition by city) as 'نسبة الفئة إلى الإجمالي',
+	   sum(ShipQty)as 'كمية المبيعات ',
+	   sum(price) as 'قيمة المبيعات ',
+
+	   count(SoldToCustomer) as 'عدد العملاء المباع لهم'
+from InvoiceLineitemes ili join
+     Inventory i
+     on ili.ItemNumber = i.ItemNumber join
+     Invoice inv
+     on ili.InvoiceNumber = inv.InvoiceNumber join
+     Customers c
+     on inv.SoldToCustomer = c.CustomerNumber 
+group by Category, City;</value>
   </data>
-  <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+  <data name="sqlDataSource2.ResultSchemaSerializable" xml:space="preserve">
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTIiPjxWaWV3IE5hbWU9IlF1ZXJ5Ij48RmllbGQgTmFtZT0iQ2F0ZWdvcnkiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iY2l0eSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSLZhtiz2KjYqSDYp9mE2YHYptipINil2YTZiSDYp9mE2KXYrNmF2KfZhNmKIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSLZg9mF2YrYqSDYp9mE2YXYqNmK2LnYp9iqICIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9ItmC2YrZhdipINin2YTZhdio2YrYudin2KogIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSLYudiv2K8g2KfZhNi52YXZhNin2KEg2KfZhNmF2KjYp9i5INmE2YfZhSIgVHlwZT0iSW50MzIiIC8+PC9WaWV3PjwvRGF0YVNldD4=</value>
+  </data>
+  <metadata name="sqlDataSource4.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 134</value>
   </metadata>
-  <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9Im15VmlldyI+PEZpZWxkIE5hbWU9ItmG2LPYqNipINin2YTZgdim2Kkg2KXZhNmJINin2YTYpdis2YXYp9mE2YoiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSLYp9mE2YXYr9mK2YbYqSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJDYXRlZ29yeSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSLYudiv2K8g2KfZhNi52YXZhNin2KEiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSLZg9mF2YrYqSDYp9mE2YXYqNmK2LnYp9iqIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0i2YLZitmF2Kkg2KfZhNmF2KjZiti52KfYqiIgVHlwZT0iRGVjaW1hbCIgLz48L1ZpZXc+PC9EYXRhU2V0Pg==</value>
+  <data name="sqlDataSource4.ResultSchemaSerializable" xml:space="preserve">
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTQiPjxWaWV3IE5hbWU9Ikludm9pY2VMaW5laXRlbWVzXzEiPjxGaWVsZCBOYW1lPSJQcmljZSIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iQ2F0ZWdvcnkiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iQ2l0eSIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
+  </data>
+  <metadata name="sqlDataSource3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 95</value>
+  </metadata>
+  <data name="sqlDataSource3.ResultSchemaSerializable" xml:space="preserve">
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTMiPjxWaWV3IE5hbWU9Ikludm9pY2VMaW5laXRlbWVzXzEiPjxGaWVsZCBOYW1lPSJTdW1fU2hpcFF0eSIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IkNhdGVnb3J5IiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkNpdHkiIFR5cGU9IlN0cmluZyIgLz48L1ZpZXc+PC9EYXRhU2V0Pg==</value>
   </data>
 </root>

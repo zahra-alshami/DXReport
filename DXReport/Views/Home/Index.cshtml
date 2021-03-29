@@ -5,6 +5,5 @@
 
 @Html.DevExpress().WebDocumentViewer(settings =>
 {
-    settings.Name = "WebDocumentViewer";
-
+    settings.Name = "WebDocumentViewer1";
 }).Bind(new DevExpress.XtraReports.Web.CachedReportSourceWeb(new DXReport.Reports.XtraReport1())).GetHtml()
